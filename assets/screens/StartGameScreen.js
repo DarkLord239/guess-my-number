@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button,ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import PrimaryButton from '../../components/PrimaryButton';
 
 const StartGameScreen = () => {
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
         shadowColor: 'black',
         shadowRadius: 6,
         shadowOpacity: 1,
-        shadowOffset: { width: 0, height: 6 }
+        shadowOffset: { width: 0, height: 6 },
+        marginTop:150,
 
     },
     buttonsContainer: {
