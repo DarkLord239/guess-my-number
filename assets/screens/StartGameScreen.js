@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button,ImageBackground } from 'react-native';
 import PrimaryButton from '../../components/PrimaryButton';
 
 const StartGameScreen = () => {
 
     return (
         <View style={styles.inputContainer}>
-            <TextInput style={styles.textInputContainer} placeholder='Enter a number' maxLength={2} />
-            <View style={styles.buttonContainer}>
-                <PrimaryButton>Confirm</PrimaryButton>
+            <TextInput style={styles.textInputContainer} maxLength={2} keyboardType='number-pad' />
+            <View style={styles.buttonsContainer}>
                 <PrimaryButton>Reset</PrimaryButton>
+                <PrimaryButton>Confirm</PrimaryButton>
             </View>
         </View>
     )
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         padding: 16,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#810000',
+        backgroundColor: '#5e0322',
         marginHorizontal: 15,
         borderRadius: 5,
         elevation: 15,
@@ -30,9 +30,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 6 }
 
     },
-    buttonContainer: {
+    buttonsContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
     },
     textInputContainer:{
         height:50,
@@ -42,7 +41,14 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         fontWeight: 'bold',
         textAlign: 'center',
-    }
+        justifyContent: 'center',
+        fontSize: 32,
+        color: '#ffffff',
+        alignItems: 'center'
+    },
+    buttonContainer:{
+        flex:1,
+    }    
 })
 
 export default StartGameScreen;
