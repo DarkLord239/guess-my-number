@@ -1,15 +1,19 @@
 import { View, StyleSheet, Text } from "react-native";
+import Title from "../../components/Title";
 
-function GameScreen ( ) {
-return(
-    <Text>This is the game screen!!</Text>
-)
+function GameScreen() {
+    return (
+        <View style={styles.screen} >
+            <Title>Opponent's Guess</Title>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
-    textContainer:{
+    screen: {
         flex: 1,
-        justifyContent: 'center'
+        alignItems:'center',
+        marginTop:150,
     }
 })
 
