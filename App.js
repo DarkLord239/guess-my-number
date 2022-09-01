@@ -11,10 +11,10 @@ export default function App() {
 
 const [inputNumber, setInputNumber] = useState();
 
-function pickedNumber (inputNumber) {
-  setInputNumber(inputNumber)
+function pickedNumberHandler (pickedNumber) {
+  setInputNumber(pickedNumber)
 }
-let screen = <StartGameScreen onConfirm={pickedNumber}/>
+let screen = <StartGameScreen onConfirm={pickedNumberHandler}/>
 if(inputNumber) {
   screen = <GameScreen />
 }

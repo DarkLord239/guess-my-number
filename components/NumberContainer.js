@@ -12,17 +12,17 @@ function NumberContainer({ children }) {
 const styles = StyleSheet.create({
     container: {
         borderWidth: 4,
-        borderColor: Colors.primary2,
-        padding: 24,
-        margin: 24,
-        borderRadius: 8,
+        borderColor: Colors.primary4,
+        padding: 15,
+        margin: 25,
+        borderRadius: 9,
         alignItems: 'center',
         justifyContent: 'center',
     },
     Number: {
-        fontSize: 10,
+        fontSize: 25,
         fontWeight: 'bold',
-        color: Colors.primary4,
+        color: Colors.primary2,
 
     }
 });
