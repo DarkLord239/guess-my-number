@@ -16,7 +16,7 @@ function pickedNumberHandler (pickedNumber) {
 }
 let screen = <StartGameScreen onConfirm={pickedNumberHandler}/>
 if(inputNumber) {
-  screen = <GameScreen />
+  screen = <GameScreen inputNumber={inputNumber} />
 }
 
   return (
