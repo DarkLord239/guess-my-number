@@ -50,19 +50,23 @@ function GameScreen({ inputNumber, onGameOver }) {
     return (
         <View style={styles.screen} >
             <Title>Opponent's Guess</Title>
-            <Card>
-                <NumberContainer>{currentGuess}</NumberContainer>
+            <NumberContainer>{currentGuess}</NumberContainer>
+            <Card>                
                 <Text>Lower or Greater?</Text>
-                <View style={styles.buttonContainer}>
-                    <PrimaryButton style={styles.innerButton} onPressing={nextNumHandler.bind(this, 'Lower')} >Lower</PrimaryButton>
-                    <PrimaryButton onPressing={nextNumHandler.bind(this, 'Greater')} >Higher</PrimaryButton>
+                <View style={styles.buttonsContainer}>
+                    <PrimaryButton style={styles.innerButton} onPressing={nextNumHandler.bind(this, 'Lower')} >
+                        <Entypo name="minus" size={24} color={Colors.primary2} />
+                    </PrimaryButton>
+                    <PrimaryButton onPressing={nextNumHandler.bind(this, 'Greater')} >
+                        <Entypo name="plus" size={24} color={Colors.primary2} />
+                    </PrimaryButton>
                 </View>
             </Card>
         </View>
     )
 }
 const styles = StyleSheet.create({
-    buttonContainer: {
+    buttonsContainer: {
         flexDirection: 'row',
     },
     innerButton: {
