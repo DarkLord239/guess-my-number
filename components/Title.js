@@ -3,7 +3,9 @@ import Colors from '../constants/colors';
 
 function Title({ children }) {
     return (
-        <Text style={styles.titleText}> {children} </Text>
+        <View style={styles.titleContainer}>
+            <Text style={styles.titleText}> {children} </Text>
+        </View>
     )
 }
 
@@ -16,6 +18,10 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlign: 'center',
         fontWeight: 'bold'
+    },
+    titleContainer: {
+        alignItems:'center',
+        marginTop: 80,
     }
 })
 
