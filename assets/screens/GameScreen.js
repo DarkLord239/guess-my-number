@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet, Text, Alert,FlatList } from "react-native";
+import { View, StyleSheet, Text, Alert, FlatList } from "react-native";
 import Title from "../../components/Title";
 import NumberContainer from "../../components/NumberContainer";
 import PrimaryButton from '../../components/PrimaryButton';
 import GameOverScreen from "./GameOverScreen";
+import GuessLogItem from "../../components/GuessLogItem";
 import Colors from "../../constants/colors";
 import Card from "../../constants/Card";
 import CardTitle from "../../components/CardTitle";
@@ -27,9 +28,11 @@ function GameScreen({ inputNumber, onGameOver }) {
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     const [guessedRounds, setGuessedRounds] = useState([initialGuess]);
 
+    const guessedRoundsLogLength = guessedRounds.length;
+
     useEffect(() => {
         if (currentGuess == inputNumber) {
-            onGameOver();
+            onGameOver(guessedRounds.length);
         }
     }, [currentGuess, inputNumber, onGameOver])
 
@@ -48,8 +51,7 @@ function GameScreen({ inputNumber, onGameOver }) {
         const newRndNum = generateRandomBetween(min, max, currentGuess);
 
         setCurrentGuess(newRndNum);
-        setGuessedRounds(prevGuessRound => [...prevGuessRound, newRndNum]
-        )
+        setGuessedRounds((prevGuess) => [...prevGuess, newRndNum]);
     };
 
     return (
@@ -71,17 +73,21 @@ function GameScreen({ inputNumber, onGameOver }) {
                     </View>
                 </View>
             </Card>
-            <FlatList
+            <View style={styles.listContainer}>
+                <FlatList
                     data={guessedRounds}
-                    renderItem={(itemData) =><Text>{itemData.item}</Text>} 
+                    renderItem={(itemData) => <GuessLogItem roundNumber={(guessedRoundsLogLength - itemData.index)} guess={itemData.item} />}
                     keyExtractor={(item) => item}
-                    />
+                    showsVerticalScrollIndicator={true}
+                />
+            </View>
         </View>
     )
 }
 const styles = StyleSheet.create({
     screen: {
-        alignItems: 'center'
+        alignItems: 'center',
+        flex:1,
     },
 
     buttonsContainer: {
@@ -90,6 +96,10 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
     },
+    listContainer: {
+       justifyContent:'center',
+       flex:1,
+    }
 })
 
 export default GameScreen;

@@ -1,4 +1,4 @@
-import { useState,useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import StartGameScreen from './assets/screens/StartGameScreen';
 import GameScreen from './assets/screens/GameScreen';
@@ -14,6 +14,7 @@ export default function App() {
 
   const [inputNumber, setInputNumber] = useState();
   const [gameOver, setGameOver] = useState(false);
+  const [guessedRounds, setGuessedRounds] = useState(0);
 
   const [fontsLoaded] = useFonts({
     'raleway-bold': require('./assets/fonts/Raleway-Bold.ttf'),
@@ -25,16 +26,23 @@ export default function App() {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
-  
+
   if (!fontsLoaded) {
     return null;
   };
 
   function pickedNumberHandler(pickedNumber) {
     setInputNumber(pickedNumber)
+    setGameOver(false);
   }
-  function gameOverHandler() {
+  function gameOverHandler(numberOfRounds) {
     setGameOver(true);
+    setGuessedRounds(numberOfRounds);
+  }
+
+  function startAgain() {
+    setInputNumber(null);
+    setGuessedRounds(0);
   }
 
   let screen = <StartGameScreen onConfirm={pickedNumberHandler} />
@@ -42,8 +50,13 @@ export default function App() {
     screen = <GameScreen inputNumber={inputNumber} onGameOver={gameOverHandler} />
   }
 
-  if (gameOver) {
-    screen = <GameOverScreen />
+  if (gameOver && inputNumber) {
+    screen =
+     <GameOverScreen
+     initialNum={inputNumber}
+     onStartAgain={startAgain}
+     numRounds={guessedRounds}
+    />
   }
 
   return (
