@@ -46,8 +46,14 @@ const StartGameScreen = ({ onConfirm }) => {
                     value={enteredNumber}
                 />
                 <View style={styles.buttonsContainer}>
-                    <PrimaryButton>Reset</PrimaryButton>
-                    <PrimaryButton onPressing={confirmNumberHandler}>Confirm</PrimaryButton>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton>Reset</PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPressing={confirmNumberHandler}>Confirm</PrimaryButton>
+                    </View>
+
+
                 </View>
             </Card>
         </View>

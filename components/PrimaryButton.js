@@ -20,20 +20,20 @@ function PrimaryButton({ children, onPressing }) {
 
 const styles = StyleSheet.create({
     buttonOuterContainer: {
-        margin: 10,
+        margin:15,
         borderRadius: 28,
         overflow: 'hidden',
-        flex:1,
     },
     buttonInnerContainer: {
         backgroundColor: Colors.primary8,
-        paddingVertical: 8,
-        paddingHorizontal: 16,
+        paddingVertical: 10,
+        paddingHorizontal: 26,
         elevation:2,
+        
     },
     buttonText: {
         color: Colors.primary2,
-        textAlign: 'center'
+        textAlign: 'center',
     },
 
 })

@@ -1,16 +1,23 @@
-import {  StyleSheet,Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Colors from "../constants/colors";
 
-function CardTitle ({children}) {
-    return <Text style={styles.textContainer}>{children}</Text>
+function CardTitle({ children }) {
+    return (
+        <View style={styles.container}>
+            <Text style={styles.text}>{children}</Text>
+        </View>
+    )
 };
 
 
 const styles = StyleSheet.create({
-    textContainer: {
+    text: {
         color: Colors.primary4,
         fontFamily: 'roboto-regular',
         fontSize: 20,
+    },
+    container:{
+        marginVertical:15,
     }
 })
 

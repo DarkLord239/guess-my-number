@@ -7,7 +7,7 @@ import GameOverScreen from "./GameOverScreen";
 import Colors from "../../constants/colors";
 import Card from "../../constants/Card";
 import CardTitle from "../../components/CardTitle";
-import {Entypo} from '@expo/vector-icons'
+import { Entypo } from '@expo/vector-icons'
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -53,27 +53,35 @@ function GameScreen({ inputNumber, onGameOver }) {
         <View style={styles.screen} >
             <Title>Opponent's Guess</Title>
             <NumberContainer>{currentGuess}</NumberContainer>
-            <Card>                
+            <Card>
                 <CardTitle>Lower or Greater?</CardTitle>
                 <View style={styles.buttonsContainer}>
-                    <PrimaryButton style={styles.innerButton} onPressing={nextNumHandler.bind(this, 'Lower')} >
-                        <Entypo name="minus" size={24} color={Colors.primary2} />
-                    </PrimaryButton>
-                    <PrimaryButton onPressing={nextNumHandler.bind(this, 'Greater')} >
-                        <Entypo name="plus" size={24} color={Colors.primary2} />
-                    </PrimaryButton>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPressing={nextNumHandler.bind(this, 'Lower')} >
+                            <Entypo name="minus" size={24} color={Colors.primary2} />
+                        </PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPressing={nextNumHandler.bind(this, 'Greater')} >
+                            <Entypo name="plus" size={24} color={Colors.primary2} />
+                        </PrimaryButton>
+                    </View>
                 </View>
             </Card>
         </View>
     )
 }
 const styles = StyleSheet.create({
+    screen: {
+        alignItems: 'center'
+    },
+
     buttonsContainer: {
         flexDirection: 'row',
     },
-    innerButton: {
-        backgroundColor: Colors.primary1
-    }
+    buttonContainer: {
+        flex: 1,
+    },
 })
 
 export default GameScreen;
