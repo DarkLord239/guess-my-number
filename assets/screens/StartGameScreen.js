@@ -4,6 +4,7 @@ import PrimaryButton from '../../components/PrimaryButton';
 import Title from '../../components/Title';
 import Colors from '../../constants/colors';
 import Card from '../../constants/Card';
+import CardTitle from '../../components/CardTitle';
 
 const StartGameScreen = ({ onConfirm }) => {
     const [enteredNumber, setEnteredNumber] = useState('');
@@ -36,6 +37,7 @@ const StartGameScreen = ({ onConfirm }) => {
         <View>
             <Title style={styles.textTitle}>Guess My Number</Title>
             <Card>
+                <CardTitle>Enter a number</CardTitle>
                 <TextInput
                     style={styles.textInputContainer}
                     maxLength={2}

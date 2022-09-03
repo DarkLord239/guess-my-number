@@ -6,6 +6,7 @@ import PrimaryButton from '../../components/PrimaryButton';
 import GameOverScreen from "./GameOverScreen";
 import Colors from "../../constants/colors";
 import Card from "../../constants/Card";
+import CardTitle from "../../components/CardTitle";
 import {Entypo} from '@expo/vector-icons'
 
 function generateRandomBetween(min, max, exclude) {
@@ -53,7 +54,7 @@ function GameScreen({ inputNumber, onGameOver }) {
             <Title>Opponent's Guess</Title>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card>                
-                <Text>Lower or Greater?</Text>
+                <CardTitle>Lower or Greater?</CardTitle>
                 <View style={styles.buttonsContainer}>
                     <PrimaryButton style={styles.innerButton} onPressing={nextNumHandler.bind(this, 'Lower')} >
                         <Entypo name="minus" size={24} color={Colors.primary2} />
