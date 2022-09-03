@@ -1,36 +1,53 @@
-import { useState } from 'react';
+import { useState,useCallback } from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import StartGameScreen from './assets/screens/StartGameScreen';
 import GameScreen from './assets/screens/GameScreen';
-import GameOverScreen from  './assets/screens/GameOverScreen'
+import GameOverScreen from './assets/screens/GameOverScreen'
 import { LinearGradient } from 'expo-linear-gradient';
 import Colors from './constants/colors';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
-
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
-const [inputNumber, setInputNumber] = useState();
-const [gameOver,setGameOver] = useState(false);
+  const [inputNumber, setInputNumber] = useState();
+  const [gameOver, setGameOver] = useState(false);
 
-function pickedNumberHandler (pickedNumber) {
-  setInputNumber(pickedNumber)
-}
-function gameOverHandler() {
-  setGameOver(true);
-}
+  const [fontsLoaded] = useFonts({
+    'raleway-bold': require('./assets/fonts/Raleway-Bold.ttf'),
+    'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+  });
 
-let screen = <StartGameScreen onConfirm={pickedNumberHandler}/>
-if(inputNumber) {
-  screen = <GameScreen inputNumber={inputNumber} onGameOver={gameOverHandler} />
-}
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+  
+  if (!fontsLoaded) {
+    return null;
+  };
 
-if (gameOver) {
-  screen = <GameOverScreen />
-}
+  function pickedNumberHandler(pickedNumber) {
+    setInputNumber(pickedNumber)
+  }
+  function gameOverHandler() {
+    setGameOver(true);
+  }
+
+  let screen = <StartGameScreen onConfirm={pickedNumberHandler} />
+  if (inputNumber) {
+    screen = <GameScreen inputNumber={inputNumber} onGameOver={gameOverHandler} />
+  }
+
+  if (gameOver) {
+    screen = <GameOverScreen />
+  }
 
   return (
-    <LinearGradient colors={[ Colors.primary5, Colors.primary6]} style={styles.container}>
+    <LinearGradient colors={[Colors.primary5, Colors.primary6]} style={styles.container} onLayout={onLayoutRootView}>
       <ImageBackground source={require('./assets/images/Dice1.jpg')} resizeMode="cover" style={styles.container} imageStyle={styles.imageBackgroud} >
         {screen}
       </ImageBackground>

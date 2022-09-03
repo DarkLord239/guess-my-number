@@ -6,6 +6,7 @@ import PrimaryButton from '../../components/PrimaryButton';
 import GameOverScreen from "./GameOverScreen";
 import Colors from "../../constants/colors";
 import Card from "../../constants/Card";
+import {Entypo} from '@expo/vector-icons'
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;

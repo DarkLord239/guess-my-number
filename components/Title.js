@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         padding: 10,
         textAlign: 'center',
-        fontWeight: 'bold'
+        fontFamily: 'raleway-bold'
     },
     titleContainer: {
         alignItems:'center',
