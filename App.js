@@ -1,12 +1,15 @@
 import { useState, useCallback } from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { useFonts } from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
+import * as SplashScreen from 'expo-splash-screen';
+
 import StartGameScreen from './assets/screens/StartGameScreen';
 import GameScreen from './assets/screens/GameScreen';
-import GameOverScreen from './assets/screens/GameOverScreen'
-import { LinearGradient } from 'expo-linear-gradient';
+import GameOverScreen from './assets/screens/GameOverScreen';
 import Colors from './constants/colors';
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -60,11 +63,14 @@ export default function App() {
   }
 
   return (
+    <>
+    <StatusBar style='light' />
     <LinearGradient colors={[Colors.primary5, Colors.primary6]} style={styles.container} onLayout={onLayoutRootView}>
       <ImageBackground source={require('./assets/images/Dice1.jpg')} resizeMode="cover" style={styles.container} imageStyle={styles.imageBackgroud} >
         {screen}
       </ImageBackground>
     </LinearGradient>
+    </>
   );
 }
 

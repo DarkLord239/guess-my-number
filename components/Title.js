@@ -1,10 +1,14 @@
-import { StyleSheet, Text, View, } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Colors from '../constants/colors';
 
 function Title({ children }) {
+
+    const { height, width } = useWindowDimensions();
+
+    const marginTopLayout= height< 400 ? 50 : 100;
     return (
         <View style={styles.titleContainer}>
-            <Text style={styles.titleText}> {children} </Text>
+            <Text style={[styles.titleText, {marginTop:marginTopLayout}]}> {children} </Text>
         </View>
     )
 }
@@ -21,8 +25,7 @@ const styles = StyleSheet.create({
     },
     titleContainer: {
         alignItems:'center',
-        marginTop: 80,
-        marginVertical:20,
+        marginBottom:20,
     }
 })
 

@@ -20,12 +20,13 @@ function PrimaryButton({ children, onPressing }) {
 
 const styles = StyleSheet.create({
     buttonOuterContainer: {
-        margin:15,
+        margin:10,
         borderRadius: 28,
         overflow: 'hidden',
+        marginBottom: 30,
     },
     buttonInnerContainer: {
-        backgroundColor: Colors.primary8,
+        backgroundColor: Colors.primary5,
         paddingVertical: 10,
         paddingHorizontal: 26,
         elevation:2,
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: Colors.primary2,
         textAlign: 'center',
+        fontSize: 20,
     },
 
 })

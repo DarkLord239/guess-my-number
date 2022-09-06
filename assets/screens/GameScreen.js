@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet, Text, Alert, FlatList } from "react-native";
+import { View, StyleSheet, Text, Alert, FlatList, useWindowDimensions } from "react-native";
+import { Entypo } from '@expo/vector-icons';
+
 import Title from "../../components/Title";
 import NumberContainer from "../../components/NumberContainer";
 import PrimaryButton from '../../components/PrimaryButton';
@@ -8,7 +10,7 @@ import GuessLogItem from "../../components/GuessLogItem";
 import Colors from "../../constants/colors";
 import Card from "../../constants/Card";
 import CardTitle from "../../components/CardTitle";
-import { Entypo } from '@expo/vector-icons'
+
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -27,6 +29,8 @@ function GameScreen({ inputNumber, onGameOver }) {
     const initialGuess = generateRandomBetween(1, 100, inputNumber)
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     const [guessedRounds, setGuessedRounds] = useState([initialGuess]);
+
+    const { height, width } = useWindowDimensions();
 
     const guessedRoundsLogLength = guessedRounds.length;
 
@@ -54,10 +58,9 @@ function GameScreen({ inputNumber, onGameOver }) {
         setGuessedRounds((prevGuess) => [...prevGuess, newRndNum]);
     };
 
-    return (
-        <View style={styles.screen} >
-            <Title>Opponent's Guess</Title>
-            <NumberContainer>{currentGuess}</NumberContainer>
+    let content = (
+        <>
+        <NumberContainer>{currentGuess}</NumberContainer>
             <Card>
                 <CardTitle>Lower or Greater?</CardTitle>
                 <View style={styles.buttonsContainer}>
@@ -73,6 +76,34 @@ function GameScreen({ inputNumber, onGameOver }) {
                     </View>
                 </View>
             </Card>
+        </>
+    );
+
+    if (width>450) {
+        content = (
+            <>
+
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPressing={nextNumHandler.bind(this, 'Lower')} >
+                            <Entypo name="minus" size={24} color={Colors.primary2} />
+                        </PrimaryButton>
+                    </View>
+                    <NumberContainer>{currentGuess}</NumberContainer>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPressing={nextNumHandler.bind(this, 'Greater')} >
+                            <Entypo name="plus" size={24} color={Colors.primary2} />
+                        </PrimaryButton>
+                    </View>
+                </View>
+        </>
+        )
+    }
+
+    return (
+        <View style={styles.screen} >
+            <Title>Opponent's Guess</Title>
+            {content}
             <View style={styles.listContainer}>
                 <FlatList
                     data={guessedRounds}
@@ -87,7 +118,7 @@ function GameScreen({ inputNumber, onGameOver }) {
 const styles = StyleSheet.create({
     screen: {
         alignItems: 'center',
-        flex:1,
+        flex: 1,
     },
 
     buttonsContainer: {
@@ -97,8 +128,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     listContainer: {
-       justifyContent:'center',
-       flex:1,
+        justifyContent: 'center',
+        flex: 1,
     }
 })
 
